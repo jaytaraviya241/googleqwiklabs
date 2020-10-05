@@ -1,4 +1,9 @@
-#WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=gSVviDjfTEg
+hello guys 
+
+lab :-  Deploy and Manage Cloud Environments with Google Cloud_ Challenge Lab.
+
+
+Step : 1
 
 cd /work/dm
 
@@ -6,6 +11,7 @@ sed -i s/SET_REGION/us-east1/g prod-network.yaml
 
 gcloud deployment-manager deployments create prod-network --config=prod-network.yaml
 
+Step : 2
 
 gcloud config set compute/zone us-east1-b
 
@@ -20,11 +26,13 @@ cd /work/k8s
 
 for F in $(ls *.yaml); do kubectl create -f $F; done
 
+Step : 3
 
 gcloud config set compute/zone us-east1-b
 
 gcloud compute instances create kraken-admin --network-interface="subnet=kraken-mgmt-subnet" --network-interface="subnet=kraken-prod-subnet"
 
+Step : 4
 
 gcloud config set compute/zone us-east1-b
 
@@ -34,6 +42,7 @@ DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" -o jsonpa
 
 kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
 
+Step : 5
 
 gcloud config set compute/zone us-east1-b
 
